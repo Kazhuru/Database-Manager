@@ -1,0 +1,14 @@
+C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\obj\Debug\FileManager.csprojResolveAssemblyReference.cache
+C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\obj\Debug\FileManager.AttributeWindow.resources
+C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\obj\Debug\FileManager.DataWindow.resources
+C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\obj\Debug\FileManager.EntityWindow.resources
+C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\obj\Debug\FileManager.Form1.resources
+C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\obj\Debug\FileManager.NewFileForm.resources
+C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\obj\Debug\FileManager.Properties.Resources.resources
+C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\obj\Debug\FileManager.csproj.GenerateResource.Cache
+C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\obj\Debug\FileManager.csproj.CoreCompileInputs.cache
+C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\bin\Debug\FileManager.exe.config
+C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\bin\Debug\FileManager.exe
+C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\bin\Debug\FileManager.pdb
+C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\obj\Debug\FileManager.exe
+C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\obj\Debug\FileManager.pdb
