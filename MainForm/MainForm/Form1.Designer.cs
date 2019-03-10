@@ -38,12 +38,9 @@
             this.MenuNewFile = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuSearchFile = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.showDDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modifyEntityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modifyAttributeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DataRegisterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addDataRegisterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addDataRegToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.labelSelectFile = new System.Windows.Forms.Label();
             this.DictionaryGrid = new System.Windows.Forms.GroupBox();
@@ -92,7 +89,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openFileToolStripMenuItem,
             this.CreateToolStripMenuItem1,
-            this.DataRegisterMenuItem});
+            this.addDataRegToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1273, 30);
@@ -102,14 +99,14 @@
             // openFileToolStripMenuItem
             // 
             this.openFileToolStripMenuItem.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.openFileToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.openFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuNewFile,
             this.MenuSearchFile});
             this.openFileToolStripMenuItem.Image = global::FileManager.Properties.Resources.if_folder_open_o_1608381;
             this.openFileToolStripMenuItem.Margin = new System.Windows.Forms.Padding(3);
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
+            this.openFileToolStripMenuItem.Text = "Open File";
             // 
             // MenuNewFile
             // 
@@ -129,22 +126,14 @@
             // CreateToolStripMenuItem1
             // 
             this.CreateToolStripMenuItem1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.CreateToolStripMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.CreateToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showDDToolStripMenuItem,
             this.modifyEntityToolStripMenuItem,
             this.modifyAttributeToolStripMenuItem});
             this.CreateToolStripMenuItem1.Image = global::FileManager.Properties.Resources.if_create_new_2639799;
             this.CreateToolStripMenuItem1.Margin = new System.Windows.Forms.Padding(3);
             this.CreateToolStripMenuItem1.Name = "CreateToolStripMenuItem1";
-            this.CreateToolStripMenuItem1.Size = new System.Drawing.Size(28, 20);
-            // 
-            // showDDToolStripMenuItem
-            // 
-            this.showDDToolStripMenuItem.Name = "showDDToolStripMenuItem";
-            this.showDDToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.showDDToolStripMenuItem.Text = "Show dictionary";
-            this.showDDToolStripMenuItem.Click += new System.EventHandler(this.ShowDDToolStripMenuItem_Click);
+            this.CreateToolStripMenuItem1.Size = new System.Drawing.Size(86, 20);
+            this.CreateToolStripMenuItem1.Text = "New Item";
             // 
             // modifyEntityToolStripMenuItem
             // 
@@ -160,31 +149,15 @@
             this.modifyAttributeToolStripMenuItem.Text = "Attribute\'s Window";
             this.modifyAttributeToolStripMenuItem.Click += new System.EventHandler(this.ModifyAttributeToolStripMenuItem_Click);
             // 
-            // DataRegisterMenuItem
+            // addDataRegToolStripMenuItem
             // 
-            this.DataRegisterMenuItem.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.DataRegisterMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.DataRegisterMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showDataToolStripMenuItem,
-            this.addDataRegisterToolStripMenuItem});
-            this.DataRegisterMenuItem.Image = global::FileManager.Properties.Resources.if_data_115746;
-            this.DataRegisterMenuItem.Margin = new System.Windows.Forms.Padding(3);
-            this.DataRegisterMenuItem.Name = "DataRegisterMenuItem";
-            this.DataRegisterMenuItem.Size = new System.Drawing.Size(28, 20);
-            // 
-            // showDataToolStripMenuItem
-            // 
-            this.showDataToolStripMenuItem.Name = "showDataToolStripMenuItem";
-            this.showDataToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.showDataToolStripMenuItem.Text = "Show registers";
-            this.showDataToolStripMenuItem.Click += new System.EventHandler(this.ShowDataToolStripMenuItem_Click);
-            // 
-            // addDataRegisterToolStripMenuItem
-            // 
-            this.addDataRegisterToolStripMenuItem.Name = "addDataRegisterToolStripMenuItem";
-            this.addDataRegisterToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.addDataRegisterToolStripMenuItem.Text = "Add Data Register";
-            this.addDataRegisterToolStripMenuItem.Click += new System.EventHandler(this.AddDataRegisterToolStripMenuItem_Click);
+            this.addDataRegToolStripMenuItem.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.addDataRegToolStripMenuItem.Image = global::FileManager.Properties.Resources.if_data_115746;
+            this.addDataRegToolStripMenuItem.Margin = new System.Windows.Forms.Padding(3);
+            this.addDataRegToolStripMenuItem.Name = "addDataRegToolStripMenuItem";
+            this.addDataRegToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
+            this.addDataRegToolStripMenuItem.Text = "Add Data";
+            this.addDataRegToolStripMenuItem.Click += new System.EventHandler(this.AddDataRegToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -300,8 +273,6 @@
             // RegistersGrid
             // 
             this.RegistersGrid.Controls.Add(this.RegistersGridView);
-            this.RegistersGrid.Controls.Add(this.comboRegEntitySec);
-            this.RegistersGrid.Controls.Add(this.label2);
             this.RegistersGrid.Location = new System.Drawing.Point(634, 55);
             this.RegistersGrid.Name = "RegistersGrid";
             this.RegistersGrid.Size = new System.Drawing.Size(631, 464);
@@ -319,21 +290,21 @@
             this.RegistersGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.RegistersGridView.BackgroundColor = System.Drawing.Color.Thistle;
             this.RegistersGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.RegistersGridView.Location = new System.Drawing.Point(6, 41);
+            this.RegistersGridView.Location = new System.Drawing.Point(6, 19);
             this.RegistersGridView.MultiSelect = false;
             this.RegistersGridView.Name = "RegistersGridView";
             this.RegistersGridView.ReadOnly = true;
             this.RegistersGridView.RowHeadersVisible = false;
             this.RegistersGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.RegistersGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.RegistersGridView.Size = new System.Drawing.Size(615, 414);
+            this.RegistersGridView.Size = new System.Drawing.Size(615, 436);
             this.RegistersGridView.TabIndex = 11;
             this.RegistersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RegistersGridView_CellContentClick);
             // 
             // comboRegEntitySec
             // 
             this.comboRegEntitySec.FormattingEnabled = true;
-            this.comboRegEntitySec.Location = new System.Drawing.Point(485, 17);
+            this.comboRegEntitySec.Location = new System.Drawing.Point(933, 36);
             this.comboRegEntitySec.Name = "comboRegEntitySec";
             this.comboRegEntitySec.Size = new System.Drawing.Size(136, 21);
             this.comboRegEntitySec.TabIndex = 10;
@@ -342,7 +313,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(413, 21);
+            this.label2.Location = new System.Drawing.Point(861, 39);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 9;
@@ -354,6 +325,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(1273, 531);
+            this.Controls.Add(this.comboRegEntitySec);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.DictionaryGrid);
             this.Controls.Add(this.RegistersGrid);
             this.Controls.Add(this.labelSelectFile);
@@ -371,7 +344,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.AttribGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EntityGridView)).EndInit();
             this.RegistersGrid.ResumeLayout(false);
-            this.RegistersGrid.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RegistersGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -394,11 +366,7 @@
         private System.Windows.Forms.DataGridView EntityGridView;
         private System.Windows.Forms.ToolStripMenuItem MenuNewFile;
         private System.Windows.Forms.DataGridView AttribGridView;
-        private System.Windows.Forms.ToolStripMenuItem DataRegisterMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem showDataToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addDataRegisterToolStripMenuItem;
         private System.Windows.Forms.GroupBox RegistersGrid;
-        private System.Windows.Forms.ToolStripMenuItem showDDToolStripMenuItem;
         private System.Windows.Forms.ComboBox comboRegEntitySec;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView RegistersGridView;
@@ -408,6 +376,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AttDataType;
         private System.Windows.Forms.DataGridViewTextBoxColumn AttDataLenght;
         private System.Windows.Forms.DataGridViewTextBoxColumn AttIndexType;
+        private System.Windows.Forms.ToolStripMenuItem addDataRegToolStripMenuItem;
     }
 }
 

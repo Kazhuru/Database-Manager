@@ -136,13 +136,14 @@ namespace FileManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddDataRegisterToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AddDataRegToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (FileURL != "")
             {
                 if (comboRegEntitySec.SelectedItem != null)
-                {   //Create a Register
-                    DatWindow = new DataWindow(this, EntityList.Find(query => query.Name == comboRegEntitySec.SelectedItem.ToString()))
+                {   //--- Create a Register
+                    Entity SelectedEntity = EntityList.Find(query => query.Name == comboRegEntitySec.SelectedItem.ToString());
+                    DatWindow = new DataWindow(this, SelectedEntity,-1)
                     { StartPosition = FormStartPosition.CenterParent };
                     DatWindow.ShowDialog();
                     UpdateRegisterGrid();
@@ -165,13 +166,12 @@ namespace FileManager
                     Entity SelectedEnt = EntityList[comboRegEntitySec.SelectedIndex];
                     int RowIdx;
                     if (e.ColumnIndex == SelectedEnt.AttributeList.Count + 2)
-                    { //Remove a Register
+                    { //--- Remove a Register
                         RowIdx = e.RowIndex;
-                        Register SelectedReg = SelectedEnt.DataHandler.DataRegisters[RowIdx];
-                        SelectedEnt.DataHandler.Delete(SelectedReg);
+                        SelectedEnt.RemoveRegister(RowIdx);
                     }
                     if (e.ColumnIndex == SelectedEnt.AttributeList.Count + 3)
-                    {  //Modify a Register
+                    {   //--- Modify a Register
                         RowIdx = e.RowIndex;
                         DatWindow = new DataWindow(this, SelectedEnt, RowIdx) { StartPosition = FormStartPosition.CenterParent };
                         DatWindow.ShowDialog();
@@ -180,34 +180,6 @@ namespace FileManager
                     UpdateDictonaryGrid();
                 }
             }
-        }
-
-        /// <summary>
-        /// hides the dictonary grid and show the registers grid
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ShowDataToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //DictionaryGrid.Visible = false;
-            //RegistersGrid.Visible = true;
-            comboRegEntitySec.Items.Clear();
-            if (FileURL != "")
-            {
-                foreach (Entity ent in EntityList)
-                    comboRegEntitySec.Items.Add(ent.Name);
-            }
-        }
-
-        /// <summary>
-        /// hides the registers grid and show the dictionary grid
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ShowDDToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //DictionaryGrid.Visible = true;
-            //RegistersGrid.Visible = false;
         }
 
         /// <summary>
@@ -237,8 +209,6 @@ namespace FileManager
             RegistersGridView.Columns.AddRange(new DataGridViewColumn[] { Remove, Modify });
             UpdateRegisterGrid();
             UpdateDictonaryGrid();
-
-
         }
 
         /// <summary>
@@ -250,15 +220,18 @@ namespace FileManager
             {
                 RegistersGridView.Rows.Clear();
                 Entity SelectedEntity = EntityList[comboRegEntitySec.SelectedIndex];
-                foreach (Register itReg in SelectedEntity.DataHandler.DataRegisters)
+                foreach (var DataItem in SelectedEntity.Data)
                 {
                     string[] rowR;
-                    rowR = new string[itReg.RegisterItems.Count()];
-                    for (int i = 0; i < itReg.RegisterItems.Count(); i++)
-                        rowR[i] = itReg.RegisterItems[i];
+                    rowR = new string[DataItem.Value.Count()];
+                    for (int i = 0; i < DataItem.Value.Count(); i++)
+                        rowR[i] = DataItem.Value[i];
                     RegistersGridView.Rows.Add(rowR);
                 }
             }
+
+            foreach (Entity ent in EntityList)
+                comboRegEntitySec.Items.Add(ent.Name);
         }
     }
 }

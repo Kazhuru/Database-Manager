@@ -75,7 +75,7 @@ namespace FileManager
                 }
                 else
                 {
-                    int idx = CheckEntityPos(inputEnt);
+                    int idx = CheckEntityPos(inputEnt.Name);
                     if(idx != -1)
                         MainForm.EntityList.Insert(idx, inputEnt);
                     else
@@ -119,10 +119,10 @@ namespace FileManager
         /// </summary>
         /// <param name="inputEntity"></param>
         /// <returns></returns>
-        private int CheckEntityPos(Entity inputEntity)
+        private int CheckEntityPos(string inputEntity)
         {
             for (int i = 0; i < MainForm.EntityList.Count(); i++)
-                if (MainForm.EntityList[i].Name.CompareTo(inputEntity.Name) == 1)
+                if (MainForm.EntityList[i].Name.CompareTo(inputEntity) == 1)
                     return i;
             //last in the list = -1
             return -1;

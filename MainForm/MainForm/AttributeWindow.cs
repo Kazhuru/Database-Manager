@@ -67,6 +67,28 @@ namespace FileManager
         }
 
         /// <summary>
+        /// method that receives a attribute and stores it in the List and File dictionary.
+        /// </summary>
+        /// <param name="inputAtt"></param>
+        /// <param name="idx"></param>
+        public void CreateAttribute(Attribute inputAtt, string EntityInputName)
+        {
+            Entity SelectedEntity = MainForm.EntityList.Find(ent => ent.Name == EntityInputName);
+            //Determines if exists Inputs errors 
+            bool finded = false;
+            bool containsPK = SelectedEntity.AttributeList.Any(item => item.IndexType == "PRIMARY KEY");
+            if (containsPK && CreateIndexTBox.Text == "PRIMARY KEY")
+            {
+                finded = true;
+                MessageBox.Show("the Entity already has a Primary Key", " Input Error");
+            }
+            if (!finded)
+            {   //finds no input errors
+                SelectedEntity.AttributeList.Add(inputAtt);
+            }
+        }
+
+        /// <summary>
         /// deletes Attribute with the input data.
         /// </summary>
         /// <param name="sender"></param>
@@ -81,6 +103,16 @@ namespace FileManager
                 }
                 this.Close();
             }
+        }
+
+        /// <summary>
+        /// method that receives the entity and attribute index and removes it in the List and File dictionary.
+        /// </summary>
+        /// <param name="Entidx"></param>
+        /// <param name="Attidx"></param>
+        public void DeleteAttribute(int Entidx, int Attidx)
+        {
+            MainForm.EntityList[Entidx].AttributeList.RemoveAt(Attidx);
         }
 
         /// <summary>
@@ -118,38 +150,6 @@ namespace FileManager
                 ModifySelectBox.Items.Add(iterator.Name);
                 DeleteSeletBox.Items.Add(iterator.Name);
             }
-        }
-
-        /// <summary>
-        /// method that receives a attribute and stores it in the List and File dictionary.
-        /// </summary>
-        /// <param name="inputAtt"></param>
-        /// <param name="idx"></param>
-        public void CreateAttribute(Attribute inputAtt, string EntityInputName)
-        {
-            Entity SelectedEntity = MainForm.EntityList.Find(ent => ent.Name == EntityInputName);
-            //Determines if exists Inputs errors 
-            bool finded = false;
-            bool containsPK = SelectedEntity.AttributeList.Any(item => item.IndexType == "PRIMARY KEY");
-            if (containsPK && CreateIndexTBox.Text == "PRIMARY KEY")
-            {
-                finded = true;
-                MessageBox.Show("the Entity already has a Primary Key", " Input Error");
-            }
-            if (!finded)
-            {   //finds no input errors
-                SelectedEntity.AttributeList.Add(inputAtt);
-            }
-        }
-
-        /// <summary>
-        /// method that receives the entity and attribute index and removes it in the List and File dictionary.
-        /// </summary>
-        /// <param name="Entidx"></param>
-        /// <param name="Attidx"></param>
-        public void DeleteAttribute(int Entidx, int Attidx)
-        {
-           MainForm.EntityList[Entidx].AttributeList.RemoveAt(Attidx);
         }
     }
 }

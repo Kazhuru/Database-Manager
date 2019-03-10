@@ -12,7 +12,6 @@ namespace FileManager
         public string DataType { get; set; } // 0 - STRING,   1 - INT,   2 - LONG,   3 - BOOL
         public string IndexType { get; set; } // 0 - NONE KEY,   1 - PRIMARY KEY,   2 - FOREING KEY
         public int LengthDataType { get; set; }
-        internal IndexHandler IdxHandler { get; set; }
         /// <summary>
         /// Attribute constructor.
         /// </summary>
@@ -26,7 +25,6 @@ namespace FileManager
             DataType = inDtype;
             LengthDataType = inLength;
             IndexType = inIdxType;
-            IdxHandler = new IndexHandler();
         }   
     }
 }
