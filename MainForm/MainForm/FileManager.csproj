@@ -154,5 +154,8 @@
   <ItemGroup>
     <None Include="Resources\if_data_115746.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_save_2561379.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

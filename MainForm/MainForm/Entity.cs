@@ -13,13 +13,25 @@ namespace FileManager
         public SortedList<string, List<string>> Data;
 
         /// <summary>
+        /// Entity constructor without parameters.
+        /// </summary>
+        /// <param name="inputname"></param>
+        public Entity()
+        {
+            //int numrand = Random.Next(1000);
+            Name = "EntityNull";
+            AttributeList = new List<Attribute>(); 
+            Data = new SortedList<string, List<string>>();
+        }
+
+        /// <summary>
         /// Entity constructor.
         /// </summary>
         /// <param name="inputname"></param>
         public Entity(string inputname)
         {
             Name = inputname;
-            AttributeList = new List<Attribute>();;
+            AttributeList = new List<Attribute>();
             Data = new SortedList<string, List<string>>();
         }
 

@@ -71,16 +71,16 @@ namespace FileManager
 
             if (validData && CurrentEntity.AttributeList.Count > 0)
             {
-                if (RegisterIndex == -1)
-                {   //create new Register
+                if (RegisterIndex == -1) //create new Register   
                     CurrentEntity.AddRegister(DataBuffer);
-                }
-                else
-                {   //modify current Reggister
-                    CurrentEntity.ModifyRegister(DataBuffer, RegisterIndex);
-                }
-                this.Close();
+                else //modify current Reggister 
+                    CurrentEntity.ModifyRegister(DataBuffer, RegisterIndex); 
             }
+            else
+            {
+
+            }
+            this.Close();
         }
 
         /// <summary>

@@ -33,10 +33,6 @@ namespace FileManager
             FileURL = "";
             EntityList = new List<Entity>();
             InitializeComponent();
-            //panel1.HorizontalScroll.Maximum = 0;
-            //panel1.AutoScroll = false;
-            //panel1.VerticalScroll.Visible = false;
-            //panel1.AutoScroll = true;
         }
 
         /// <summary>
@@ -73,10 +69,13 @@ namespace FileManager
                 RestoreDirectory = true
             };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
+            {   //finded a OK file
                 labelSelectFile.Text = openFileDialog.FileName;
                 FileURL = labelSelectFile.Text;
+                UpdateRegisterGrid();
                 UpdateDictonaryGrid();
+                //read the stuff from the file
+                RestoreFileToManager();
             }
         }
 
@@ -91,6 +90,7 @@ namespace FileManager
             {
                 EntWindow = new EntityWindow(this) { StartPosition = FormStartPosition.CenterParent };
                 EntWindow.ShowDialog();
+                UpdateRegisterGrid();
                 UpdateDictonaryGrid();
             }
         }
@@ -106,6 +106,7 @@ namespace FileManager
             {
                 AttWindow = new AttributeWindow(this) { StartPosition = FormStartPosition.CenterParent };
                 AttWindow.ShowDialog();
+                UpdateRegisterGrid();
                 UpdateDictonaryGrid();
             }
         }
@@ -229,9 +230,28 @@ namespace FileManager
                     RegistersGridView.Rows.Add(rowR);
                 }
             }
+        }
 
+        private void UpdateComboRegistersPick()
+        {
+            comboRegEntitySec.Items.Clear();
             foreach (Entity ent in EntityList)
                 comboRegEntitySec.Items.Add(ent.Name);
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(FileURL != "")
+            {
+                string SerialOutput = SerialTool.Serialize(EntityList);
+                File.WriteAllText(FileURL, SerialOutput);
+            }
+        }
+
+        private void RestoreFileToManager()
+        {
+            string SerialInputdText = File.ReadAllText(FileURL);
+            EntityList = SerialTool.Deserialize<List<Entity>>(SerialInputdText);
         }
     }
 }

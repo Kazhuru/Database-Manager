@@ -25,6 +25,21 @@ namespace FileManager
             DataType = inDtype;
             LengthDataType = inLength;
             IndexType = inIdxType;
-        }   
+        }
+
+        /// <summary>
+        /// Attribute constructor without parameters.
+        /// </summary>
+        /// <param name="inName"></param>
+        /// <param name="inDtype"></param>
+        /// <param name="inIdxType"></param>
+        /// <param name="inLength"></param>
+        public Attribute()
+        {
+            Name = "NullName";
+            DataType = "INT";
+            LengthDataType = 4;
+            IndexType = "NONE KEY";
+        }
     }
 }

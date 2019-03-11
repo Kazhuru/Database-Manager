@@ -56,12 +56,27 @@ namespace FileManager
                 if (CreateNameBox.Text.Trim() != "" && CreateIndexTBox.Text != "" && CreateLenghtBox.Text.Trim() != ""
                     && CreateTypeBox.Text != "" && SelectEntityBox.SelectedItem.ToString() != "")
                 {
-                        Attribute inputAttribute;
-                        inputAttribute = new Attribute(CreateNameBox.Text, CreateTypeBox.Text, 
-                            CreateIndexTBox.Text,int.Parse(CreateLenghtBox.Text));
-                        CreateAttribute(inputAttribute, SelectEntityBox.SelectedItem.ToString());
+                    int DataLen = 0;
+                    switch (CreateTypeBox.Text)
+                    {
+                        case "STRING":
+                            DataLen = int.Parse(CreateLenghtBox.Text);
+                            break;
+                        case "INT":
+                            DataLen = 4;
+                            break;
+                        case "LONG":
+                            DataLen = 8;
+                            break;
+                        case "BOOL":
+                            DataLen = 1;
+                            break;
+                    }
+                    Attribute inputAttribute;
+                    inputAttribute = new Attribute(CreateNameBox.Text, CreateTypeBox.Text, CreateIndexTBox.Text, DataLen);
+                    CreateAttribute(inputAttribute, SelectEntityBox.SelectedItem.ToString());
                            
-                        this.Close();
+                    this.Close();
                 }
             }
         }

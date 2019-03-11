@@ -53,7 +53,7 @@ namespace FileManager
             {
                 folderString = folderBrowserDialog1.SelectedPath;
             }
-            label2.Text = folderString + "\\" + nameString + ".bin";
+            label2.Text = folderString + "\\" + nameString + ".txt";
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace FileManager
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
             nameString = textBox1.Text;
-            label2.Text = folderString + "\\" + nameString + ".bin";
+            label2.Text = folderString + "\\" + nameString + ".txt";
         }
     }
 }
