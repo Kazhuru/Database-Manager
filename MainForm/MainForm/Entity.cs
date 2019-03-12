@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FileManager
-{
+{   [Serializable]
     public class Entity
     {
         public string Name;
@@ -18,7 +18,6 @@ namespace FileManager
         /// <param name="inputname"></param>
         public Entity()
         {
-            //int numrand = Random.Next(1000);
             Name = "EntityNull";
             AttributeList = new List<Attribute>(); 
             Data = new SortedList<string, List<string>>();

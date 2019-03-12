@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 
 namespace FileManager
 {
@@ -243,15 +245,47 @@ namespace FileManager
         {
             if(FileURL != "")
             {
-                string SerialOutput = SerialTool.Serialize(EntityList);
-                File.WriteAllText(FileURL, SerialOutput);
+                //&string SerialOutput = SerialTool.Serialize(EntityList);
+                //File.WriteAllText(FileURL, SerialOutput);
+
+                FileStream files = new FileStream(FileURL, FileMode.Create);
+                try
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    formatter.Serialize(files, EntityList);
+                }
+                catch (SerializationException ex)
+                {
+                    Console.WriteLine("Failed to serialize. Reason: " + ex.Message);
+                    throw;
+                }
+                finally
+                {
+                    files.Close();
+                }
             }
         }
 
         private void RestoreFileToManager()
         {
-            string SerialInputdText = File.ReadAllText(FileURL);
-            EntityList = SerialTool.Deserialize<List<Entity>>(SerialInputdText);
+            //string SerialInputdText = File.ReadAllText(FileURL);
+            //EntityList = SerialTool.Deserialize<List<Entity>>(SerialInputdText);
+
+            FileStream files = new FileStream(FileURL, FileMode.Create);
+            try
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                EntityList = (List<Entity>)formatter.Deserialize(files);
+            }
+            catch (SerializationException ex)
+            {
+                Console.WriteLine("Failed to deserialize. Reason: " + ex.Message);
+                throw;
+            }
+            finally
+            {
+                files.Close();
+            }
         }
     }
 }
