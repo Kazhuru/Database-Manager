@@ -34,6 +34,14 @@
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.asdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuNewFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuSearchFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addDataRegToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifyEntityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifyAttributeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.labelSelectFile = new System.Windows.Forms.Label();
             this.DictionaryGrid = new System.Windows.Forms.GroupBox();
@@ -49,14 +57,6 @@
             this.RegistersGridView = new System.Windows.Forms.DataGridView();
             this.comboRegEntitySec = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuNewFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuSearchFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addDataRegToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CreateToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.modifyEntityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modifyAttributeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.DictionaryGrid.SuspendLayout();
@@ -90,13 +90,86 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openFileToolStripMenuItem,
             this.saveToolStripMenuItem,
-            this.addDataRegToolStripMenuItem,
-            this.CreateToolStripMenuItem1});
+            this.CreateToolStripMenuItem1,
+            this.addDataRegToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1273, 30);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // openFileToolStripMenuItem
+            // 
+            this.openFileToolStripMenuItem.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.openFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuNewFile,
+            this.MenuSearchFile});
+            this.openFileToolStripMenuItem.Image = global::FileManager.Properties.Resources.if_folder_open_o_1608381;
+            this.openFileToolStripMenuItem.Margin = new System.Windows.Forms.Padding(3);
+            this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
+            this.openFileToolStripMenuItem.Text = "Open File";
+            // 
+            // MenuNewFile
+            // 
+            this.MenuNewFile.Name = "MenuNewFile";
+            this.MenuNewFile.ShowShortcutKeys = false;
+            this.MenuNewFile.Size = new System.Drawing.Size(130, 22);
+            this.MenuNewFile.Text = "New File";
+            this.MenuNewFile.Click += new System.EventHandler(this.MenuNewFile_Click);
+            // 
+            // MenuSearchFile
+            // 
+            this.MenuSearchFile.Name = "MenuSearchFile";
+            this.MenuSearchFile.Size = new System.Drawing.Size(130, 22);
+            this.MenuSearchFile.Text = "Search File";
+            this.MenuSearchFile.Click += new System.EventHandler(this.MenuSearchFile_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.saveToolStripMenuItem.Image = global::FileManager.Properties.Resources.iconfinder_save_2561379;
+            this.saveToolStripMenuItem.Margin = new System.Windows.Forms.Padding(3);
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // addDataRegToolStripMenuItem
+            // 
+            this.addDataRegToolStripMenuItem.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.addDataRegToolStripMenuItem.Image = global::FileManager.Properties.Resources.if_data_115746;
+            this.addDataRegToolStripMenuItem.Margin = new System.Windows.Forms.Padding(3);
+            this.addDataRegToolStripMenuItem.Name = "addDataRegToolStripMenuItem";
+            this.addDataRegToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
+            this.addDataRegToolStripMenuItem.Text = "Add Data";
+            this.addDataRegToolStripMenuItem.Click += new System.EventHandler(this.AddDataRegToolStripMenuItem_Click);
+            // 
+            // CreateToolStripMenuItem1
+            // 
+            this.CreateToolStripMenuItem1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.CreateToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modifyEntityToolStripMenuItem,
+            this.modifyAttributeToolStripMenuItem});
+            this.CreateToolStripMenuItem1.Image = global::FileManager.Properties.Resources.if_create_new_2639799;
+            this.CreateToolStripMenuItem1.Margin = new System.Windows.Forms.Padding(3);
+            this.CreateToolStripMenuItem1.Name = "CreateToolStripMenuItem1";
+            this.CreateToolStripMenuItem1.Size = new System.Drawing.Size(86, 20);
+            this.CreateToolStripMenuItem1.Text = "New Item";
+            // 
+            // modifyEntityToolStripMenuItem
+            // 
+            this.modifyEntityToolStripMenuItem.Name = "modifyEntityToolStripMenuItem";
+            this.modifyEntityToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modifyEntityToolStripMenuItem.Text = "Entity\'s Window";
+            this.modifyEntityToolStripMenuItem.Click += new System.EventHandler(this.ModifyEntityToolStripMenuItem_Click);
+            // 
+            // modifyAttributeToolStripMenuItem
+            // 
+            this.modifyAttributeToolStripMenuItem.Name = "modifyAttributeToolStripMenuItem";
+            this.modifyAttributeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modifyAttributeToolStripMenuItem.Text = "Attribute\'s Window";
+            this.modifyAttributeToolStripMenuItem.Click += new System.EventHandler(this.ModifyAttributeToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -257,79 +330,6 @@
             this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 9;
             this.label2.Text = "Entity Select";
-            // 
-            // openFileToolStripMenuItem
-            // 
-            this.openFileToolStripMenuItem.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.openFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuNewFile,
-            this.MenuSearchFile});
-            this.openFileToolStripMenuItem.Image = global::FileManager.Properties.Resources.if_folder_open_o_1608381;
-            this.openFileToolStripMenuItem.Margin = new System.Windows.Forms.Padding(3);
-            this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
-            this.openFileToolStripMenuItem.Text = "Open File";
-            // 
-            // MenuNewFile
-            // 
-            this.MenuNewFile.Name = "MenuNewFile";
-            this.MenuNewFile.ShowShortcutKeys = false;
-            this.MenuNewFile.Size = new System.Drawing.Size(130, 22);
-            this.MenuNewFile.Text = "New File";
-            this.MenuNewFile.Click += new System.EventHandler(this.MenuNewFile_Click);
-            // 
-            // MenuSearchFile
-            // 
-            this.MenuSearchFile.Name = "MenuSearchFile";
-            this.MenuSearchFile.Size = new System.Drawing.Size(130, 22);
-            this.MenuSearchFile.Text = "Search File";
-            this.MenuSearchFile.Click += new System.EventHandler(this.MenuSearchFile_Click);
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.saveToolStripMenuItem.Image = global::FileManager.Properties.Resources.iconfinder_save_2561379;
-            this.saveToolStripMenuItem.Margin = new System.Windows.Forms.Padding(3);
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
-            // 
-            // addDataRegToolStripMenuItem
-            // 
-            this.addDataRegToolStripMenuItem.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.addDataRegToolStripMenuItem.Image = global::FileManager.Properties.Resources.if_data_115746;
-            this.addDataRegToolStripMenuItem.Margin = new System.Windows.Forms.Padding(3);
-            this.addDataRegToolStripMenuItem.Name = "addDataRegToolStripMenuItem";
-            this.addDataRegToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
-            this.addDataRegToolStripMenuItem.Text = "Add Data";
-            this.addDataRegToolStripMenuItem.Click += new System.EventHandler(this.AddDataRegToolStripMenuItem_Click);
-            // 
-            // CreateToolStripMenuItem1
-            // 
-            this.CreateToolStripMenuItem1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.CreateToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.modifyEntityToolStripMenuItem,
-            this.modifyAttributeToolStripMenuItem});
-            this.CreateToolStripMenuItem1.Image = global::FileManager.Properties.Resources.if_create_new_2639799;
-            this.CreateToolStripMenuItem1.Margin = new System.Windows.Forms.Padding(3);
-            this.CreateToolStripMenuItem1.Name = "CreateToolStripMenuItem1";
-            this.CreateToolStripMenuItem1.Size = new System.Drawing.Size(86, 20);
-            this.CreateToolStripMenuItem1.Text = "New Item";
-            // 
-            // modifyEntityToolStripMenuItem
-            // 
-            this.modifyEntityToolStripMenuItem.Name = "modifyEntityToolStripMenuItem";
-            this.modifyEntityToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.modifyEntityToolStripMenuItem.Text = "Entity\'s Window";
-            this.modifyEntityToolStripMenuItem.Click += new System.EventHandler(this.ModifyEntityToolStripMenuItem_Click);
-            // 
-            // modifyAttributeToolStripMenuItem
-            // 
-            this.modifyAttributeToolStripMenuItem.Name = "modifyAttributeToolStripMenuItem";
-            this.modifyAttributeToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.modifyAttributeToolStripMenuItem.Text = "Attribute\'s Window";
-            this.modifyAttributeToolStripMenuItem.Click += new System.EventHandler(this.ModifyAttributeToolStripMenuItem_Click);
             // 
             // Form1
             // 

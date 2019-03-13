@@ -166,5 +166,21 @@ namespace FileManager
                 DeleteSeletBox.Items.Add(iterator.Name);
             }
         }
+
+        private void CreateTypeBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (CreateTypeBox.SelectedItem.ToString() == "STRING")
+                CreateLenghtBox.ReadOnly = false;
+            else
+                CreateLenghtBox.ReadOnly = true;
+        }
+
+        private void ModifyTypeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ModifyTypeBox.SelectedItem.ToString() == "STRING")
+                ModifyLenghtBox.ReadOnly = false;
+            else
+                ModifyLenghtBox.ReadOnly = true;
+        }            
     }
 }

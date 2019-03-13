@@ -149,6 +149,7 @@
             this.CreateTypeBox.Name = "CreateTypeBox";
             this.CreateTypeBox.Size = new System.Drawing.Size(83, 21);
             this.CreateTypeBox.TabIndex = 1;
+            this.CreateTypeBox.SelectionChangeCommitted += new System.EventHandler(this.CreateTypeBox_SelectionChangeCommitted);
             // 
             // CreateNameBox
             // 
@@ -303,6 +304,7 @@
             this.ModifyTypeBox.Name = "ModifyTypeBox";
             this.ModifyTypeBox.Size = new System.Drawing.Size(83, 21);
             this.ModifyTypeBox.TabIndex = 13;
+            this.ModifyTypeBox.SelectedIndexChanged += new System.EventHandler(this.ModifyTypeBox_SelectedIndexChanged);
             // 
             // ModifyNameBox
             // 

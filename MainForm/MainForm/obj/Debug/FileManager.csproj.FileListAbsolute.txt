@@ -12,3 +12,17 @@ C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\bin\Debug\FileManag
 C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\bin\Debug\FileManager.pdb
 C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\obj\Debug\FileManager.exe
 C:\Users\jr_5o\Desktop\File-Manager-master\MainForm\MainForm\obj\Debug\FileManager.pdb
+C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\bin\Debug\FileManager.exe.config
+C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\bin\Debug\FileManager.exe
+C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\bin\Debug\FileManager.pdb
+C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\obj\Debug\FileManager.csprojAssemblyReference.cache
+C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\obj\Debug\FileManager.AttributeWindow.resources
+C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\obj\Debug\FileManager.DataWindow.resources
+C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\obj\Debug\FileManager.EntityWindow.resources
+C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\obj\Debug\FileManager.Form1.resources
+C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\obj\Debug\FileManager.NewFileForm.resources
+C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\obj\Debug\FileManager.Properties.Resources.resources
+C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\obj\Debug\FileManager.csproj.GenerateResource.cache
+C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\obj\Debug\FileManager.csproj.CoreCompileInputs.cache
+C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\obj\Debug\FileManager.exe
+C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\obj\Debug\FileManager.pdb

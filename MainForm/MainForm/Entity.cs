@@ -10,7 +10,7 @@ namespace FileManager
     {
         public string Name;
         public List<Attribute> AttributeList;
-        public SortedList<string, List<string>> Data;
+        public List<DataRegister> Registers;
 
         /// <summary>
         /// Entity constructor without parameters.
@@ -20,7 +20,7 @@ namespace FileManager
         {
             Name = "EntityNull";
             AttributeList = new List<Attribute>(); 
-            Data = new SortedList<string, List<string>>();
+            Registers = new List<DataRegister>();
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace FileManager
         {
             Name = inputname;
             AttributeList = new List<Attribute>();
-            Data = new SortedList<string, List<string>>();
+            Registers = new List<DataRegister>();
         }
 
         public void AddRegister(List<string> DataBuffer)
@@ -42,7 +42,8 @@ namespace FileManager
             if(CheckIsRepeatedKey(DataBuffer,PKIndx,-1) == false)
             {
                 //Sorted insert
-                Data.Add(DataBuffer[PKIndx], DataBuffer);
+                
+                Registers.Add(new DataRegister(DataBuffer,DataBuffer[PKIndx]));
             }
         }
 
@@ -54,14 +55,15 @@ namespace FileManager
             if (CheckIsRepeatedKey(DataBuffer, PKIndx, RegisterIndex) == false)
             {
                 RemoveRegister(RegisterIndex);
-                Data.Add(DataBuffer[PKIndx], DataBuffer);
+                Registers.Add(new DataRegister(DataBuffer, DataBuffer[PKIndx]));
             }
         }
 
         public void RemoveRegister(int RegisterIndex)
         {
-            Data.Remove(Data.Keys[RegisterIndex]);
+            Registers.Remove(Registers[RegisterIndex]);
         }
+
 
         /// <summary>
         /// method thatd checks if the register has a Pk on the data repeated
@@ -73,24 +75,22 @@ namespace FileManager
         private bool CheckIsRepeatedKey(List<string> DataBuffer, int PrimKeyIndex, int RegisterIndex)
         {
             bool find = false;
-            for (int i = 0; i < Data.Count; i++)
+            for (int i = 0; i < Registers.Count; i++)
             {
-                if(Data[Data.Keys[i]].Contains(DataBuffer[PrimKeyIndex]))
-                {   //founded same Key
-                    if (Data[Data.Keys[i]].IndexOf(DataBuffer[PrimKeyIndex]) == PrimKeyIndex)
-                    {   //in the same PK spot 
-                        if (RegisterIndex == -1)
-                        {   //just adding a register
+                if(Registers[i].PrimaryKey == DataBuffer[PrimKeyIndex])
+                {   //founded same PKey
+                    if (RegisterIndex == -1)
+                    {   //just adding a register
+                        find = true;
+                    }
+                    else
+                    {   //modifying a register
+                        if(RegisterIndex != i)
+                        {   //repeated key but in diferent register that the chosen to modify
                             find = true;
                         }
-                        else
-                        {   //modifying a register
-                            if(RegisterIndex != i)
-                            {   //repeated key but in diferent register that the chosen to modify
-                                find = true;
-                            }
-                        }
                     }
+                    
                 }
             }
             return find;

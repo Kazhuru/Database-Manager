@@ -67,6 +67,7 @@
     <Compile Include="AttributeWindow.Designer.cs">
       <DependentUpon>AttributeWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataRegister.cs" />
     <Compile Include="DataWindow.cs">
       <SubType>Form</SubType>
     </Compile>

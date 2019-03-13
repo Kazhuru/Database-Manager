@@ -74,10 +74,10 @@ namespace FileManager
             {   //finded a OK file
                 labelSelectFile.Text = openFileDialog.FileName;
                 FileURL = labelSelectFile.Text;
-                UpdateRegisterGrid();
-                UpdateDictonaryGrid();
                 //read the stuff from the file
                 RestoreFileToManager();
+                UpdateDictonaryGrid();
+                UpdateComboRegistersPick();
             }
         }
 
@@ -92,8 +92,8 @@ namespace FileManager
             {
                 EntWindow = new EntityWindow(this) { StartPosition = FormStartPosition.CenterParent };
                 EntWindow.ShowDialog();
-                UpdateRegisterGrid();
                 UpdateDictonaryGrid();
+                UpdateComboRegistersPick();
             }
         }
 
@@ -108,8 +108,8 @@ namespace FileManager
             {
                 AttWindow = new AttributeWindow(this) { StartPosition = FormStartPosition.CenterParent };
                 AttWindow.ShowDialog();
-                UpdateRegisterGrid();
                 UpdateDictonaryGrid();
+                UpdateComboRegistersPick();
             }
         }
 
@@ -135,7 +135,7 @@ namespace FileManager
         }
 
         /// <summary>
-        /// method that calls Data Window to instert the new register Data and create it
+        /// method that calls Registers Window to instert the new register Registers and create it
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -156,7 +156,7 @@ namespace FileManager
         }
 
         /// <summary>
-        /// event that calls remove or modify when the properly button was clicked
+        /// event that calls remove or modify registers when the properly button was clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -223,12 +223,12 @@ namespace FileManager
             {
                 RegistersGridView.Rows.Clear();
                 Entity SelectedEntity = EntityList[comboRegEntitySec.SelectedIndex];
-                foreach (var DataItem in SelectedEntity.Data)
+                foreach (var DataItem in SelectedEntity.Registers)
                 {
                     string[] rowR;
-                    rowR = new string[DataItem.Value.Count()];
-                    for (int i = 0; i < DataItem.Value.Count(); i++)
-                        rowR[i] = DataItem.Value[i];
+                    rowR = new string[DataItem.RegisterData.Count()];
+                    for (int i = 0; i < DataItem.RegisterData.Count(); i++)
+                        rowR[i] = DataItem.RegisterData[i];
                     RegistersGridView.Rows.Add(rowR);
                 }
             }
@@ -245,47 +245,47 @@ namespace FileManager
         {
             if(FileURL != "")
             {
-                //&string SerialOutput = SerialTool.Serialize(EntityList);
-                //File.WriteAllText(FileURL, SerialOutput);
+                string SerialOutput = SerialTool.Serialize(EntityList);
+                File.WriteAllText(FileURL, SerialOutput);
 
-                FileStream files = new FileStream(FileURL, FileMode.Create);
-                try
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    formatter.Serialize(files, EntityList);
-                }
-                catch (SerializationException ex)
-                {
-                    Console.WriteLine("Failed to serialize. Reason: " + ex.Message);
-                    throw;
-                }
-                finally
-                {
-                    files.Close();
-                }
+                //FileStream files = new FileStream(FileURL, FileMode.Create);
+                //try
+                //{
+                //    BinaryFormatter formatter = new BinaryFormatter();
+                //    formatter.Serialize(files, EntityList);
+                //}
+                //catch (SerializationException ex)
+                //{
+                //    Console.WriteLine("Failed to serialize. Reason: " + ex.Message);
+                //    throw;
+                //}
+                //finally
+                //{
+                //    files.Close();
+                //}
             }
         }
 
         private void RestoreFileToManager()
         {
-            //string SerialInputdText = File.ReadAllText(FileURL);
-            //EntityList = SerialTool.Deserialize<List<Entity>>(SerialInputdText);
+            string SerialInputdText = File.ReadAllText(FileURL);
+            EntityList = SerialTool.Deserialize<List<Entity>>(SerialInputdText);
 
-            FileStream files = new FileStream(FileURL, FileMode.Create);
-            try
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                EntityList = (List<Entity>)formatter.Deserialize(files);
-            }
-            catch (SerializationException ex)
-            {
-                Console.WriteLine("Failed to deserialize. Reason: " + ex.Message);
-                throw;
-            }
-            finally
-            {
-                files.Close();
-            }
+            //FileStream files = new FileStream(FileURL, FileMode.Create);
+            //try
+            //{
+            //    BinaryFormatter formatter = new BinaryFormatter();
+            //    EntityList = (List<Entity>)formatter.Deserialize(files);
+            //}
+            //catch (SerializationException ex)
+            //{
+            //    Console.WriteLine("Failed to deserialize. Reason: " + ex.Message);
+            //    throw;
+            //}
+            //finally
+            //{
+            //    files.Close();
+            //}
         }
     }
 }
