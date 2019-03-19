@@ -26,22 +26,13 @@ namespace FileManager
             foreach (Entity iterator in MainForm.EntityList)
                 SelectEntityBox.Items.Add(iterator.Name);
             //--Create Box's
-            CreateIndexTBox.Items.Add("NONE KEY"); 
-            CreateIndexTBox.Items.Add("PRIMARY KEY"); 
-            CreateIndexTBox.Items.Add("FOREING KEY");
-            CreateTypeBox.Items.Add("STRING");
-            CreateTypeBox.Items.Add("INT");
-            CreateTypeBox.Items.Add("LONG");
-            CreateTypeBox.Items.Add("BOOL");
-
-            //--Modify Box's
-            ModifyIndexTBox.Items.Add("NONE KEY");
-            ModifyIndexTBox.Items.Add("PRIMARY KEY");
-            ModifyIndexTBox.Items.Add("FOREING KEY");
-            ModifyTypeBox.Items.Add("STRING");
-            ModifyTypeBox.Items.Add("INT");
-            ModifyTypeBox.Items.Add("LONG");
-            ModifyTypeBox.Items.Add("BOOL");
+            IndexTBox.Items.Add("NONE KEY"); 
+            IndexTBox.Items.Add("PRIMARY KEY"); 
+            IndexTBox.Items.Add("FOREING KEY");
+            TypeBox.Items.Add("STRING");
+            TypeBox.Items.Add("INT");
+            TypeBox.Items.Add("LONG");
+            TypeBox.Items.Add("BOOL");
         }
 
         /// <summary>
@@ -53,14 +44,14 @@ namespace FileManager
         {
             if (SelectEntityBox.SelectedItem != null)
             {
-                if (CreateNameBox.Text.Trim() != "" && CreateIndexTBox.Text != "" && CreateLenghtBox.Text.Trim() != ""
-                    && CreateTypeBox.Text != "" && SelectEntityBox.SelectedItem.ToString() != "")
+                if (NameBox.Text.Trim() != "" && IndexTBox.Text != "" && TypeBox.Text != "" && 
+                    SelectEntityBox.SelectedItem.ToString() != "")
                 {
                     int DataLen = 0;
-                    switch (CreateTypeBox.Text)
+                    switch (TypeBox.Text)
                     {
                         case "STRING":
-                            DataLen = int.Parse(CreateLenghtBox.Text);
+                            DataLen = int.Parse(LenghtBox.Text);
                             break;
                         case "INT":
                             DataLen = 4;
@@ -73,7 +64,7 @@ namespace FileManager
                             break;
                     }
                     Attribute inputAttribute;
-                    inputAttribute = new Attribute(CreateNameBox.Text, CreateTypeBox.Text, CreateIndexTBox.Text, DataLen);
+                    inputAttribute = new Attribute(NameBox.Text, TypeBox.Text, IndexTBox.Text, DataLen,DescriptionBox.Text);
                     CreateAttribute(inputAttribute, SelectEntityBox.SelectedItem.ToString());
                            
                     this.Close();
@@ -92,7 +83,7 @@ namespace FileManager
             //Determines if exists Inputs errors 
             bool finded = false;
             bool containsPK = SelectedEntity.AttributeList.Any(item => item.IndexType == "PRIMARY KEY");
-            if (containsPK && CreateIndexTBox.Text == "PRIMARY KEY")
+            if (containsPK && IndexTBox.Text == "PRIMARY KEY")
             {
                 finded = true;
                 MessageBox.Show("the Entity already has a Primary Key", " Input Error");
@@ -112,9 +103,9 @@ namespace FileManager
         {
             if (SelectEntityBox.SelectedItem != null)
             {
-                if (DeleteSeletBox.Text != "" && SelectEntityBox.SelectedItem.ToString() != "")
+                if (SelectAtributeBox.Text != "" && SelectEntityBox.SelectedItem.ToString() != "")
                 {
-                    DeleteAttribute(SelectEntityBox.SelectedIndex, DeleteSeletBox.SelectedIndex);
+                    DeleteAttribute(SelectEntityBox.SelectedIndex, SelectAtributeBox.SelectedIndex);
                 }
                 this.Close();
             }
@@ -139,13 +130,13 @@ namespace FileManager
         {
             if (SelectEntityBox.SelectedItem != null)
             {
-                if (ModifyNameBox.Text.Trim() != "" && ModifyIndexTBox.Text != "" && ModifyLenghtBox.Text.Trim() != "" 
-                    && ModifyTypeBox.Text != "" && ModifySelectBox.Text != "" && SelectEntityBox.SelectedItem.ToString() != "")
+                if (NameBox.Text.Trim() != "" && IndexTBox.Text != "" && TypeBox.Text != "" 
+                    && SelectAtributeBox.Text != "" && SelectEntityBox.SelectedItem.ToString() != "")
                 {
 
                     Attribute inputAttribute;
-                    inputAttribute = new Attribute(ModifyNameBox.Text, ModifyTypeBox.Text,
-                        ModifyIndexTBox.Text, int.Parse(ModifyLenghtBox.Text));
+                    inputAttribute = new Attribute(NameBox.Text, TypeBox.Text,
+                        IndexTBox.Text, int.Parse(LenghtBox.Text), DescriptionBox.Text);
                 }
                 this.Close();
             }
@@ -158,29 +149,27 @@ namespace FileManager
         /// <param name="e"></param>
         private void SelectEntityBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            ModifySelectBox.Items.Clear();
-            DeleteSeletBox.Items.Clear();
+            SelectAtributeBox.Items.Clear();
             foreach (Attribute iterator in MainForm.EntityList[SelectEntityBox.SelectedIndex].AttributeList)
             {
-                ModifySelectBox.Items.Add(iterator.Name);
-                DeleteSeletBox.Items.Add(iterator.Name);
+                SelectAtributeBox.Items.Add(iterator.Name);
             }
         }
 
         private void CreateTypeBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (CreateTypeBox.SelectedItem.ToString() == "STRING")
-                CreateLenghtBox.ReadOnly = false;
+            if (TypeBox.SelectedItem.ToString() == "STRING")
+                LenghtBox.ReadOnly = false;
             else
-                CreateLenghtBox.ReadOnly = true;
+                LenghtBox.ReadOnly = true;
         }
 
-        private void ModifyTypeBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void IndexTBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ModifyTypeBox.SelectedItem.ToString() == "STRING")
-                ModifyLenghtBox.ReadOnly = false;
+            if (TypeBox.SelectedItem.ToString() == "FOREING KEY")
+                PKSearchBox.ReadOnly = false;
             else
-                ModifyLenghtBox.ReadOnly = true;
-        }            
+                PKSearchBox.ReadOnly = true;
+        }
     }
 }

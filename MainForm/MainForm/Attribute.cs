@@ -13,6 +13,8 @@ namespace FileManager
         public string DataType; // 0 - STRING,   1 - INT,   2 - LONG,   3 - BOOL
         public string IndexType; // 0 - NONE KEY,   1 - PRIMARY KEY,   2 - FOREING KEY
         public int LengthDataType;
+        public string Description;
+        public string FKRelation; // "Entity-PrimKey"
         /// <summary>
         /// Attribute constructor.
         /// </summary>
@@ -20,12 +22,14 @@ namespace FileManager
         /// <param name="inDtype"></param>
         /// <param name="inIdxType"></param>
         /// <param name="inLength"></param>
-        public Attribute(string inName, string inDtype, string inIdxType, int inLength)
+        public Attribute(string inName, string inDtype, string inIdxType, int inLength, string inDesc)
         {
             Name = inName;
             DataType = inDtype;
             LengthDataType = inLength;
             IndexType = inIdxType;
+            Description = inDesc;
+            FKRelation = "";
         }
 
         /// <summary>
@@ -41,6 +45,8 @@ namespace FileManager
             DataType = "INT";
             LengthDataType = 4;
             IndexType = "NONE KEY";
+            Description = "";
+            FKRelation = "";
         }
     }
 }
