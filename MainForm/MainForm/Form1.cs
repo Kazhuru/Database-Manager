@@ -128,7 +128,7 @@ namespace FileManager
                 {
                     string[] rowA;
                     rowA = new string[] {itEnt.Name, itAtt.Name, itAtt.DataType,
-                        itAtt.LengthDataType.ToString(), itAtt.IndexType};
+                        itAtt.LengthDataType.ToString(), itAtt.IndexType, itAtt.Description};
                     AttribGridView.Rows.Add(rowA);
                 }
             }
@@ -139,21 +139,21 @@ namespace FileManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddDataRegToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (FileURL != "")
-            {
-                if (comboRegEntitySec.SelectedItem != null)
-                {   //--- Create a Register
-                    Entity SelectedEntity = EntityList.Find(query => query.Name == comboRegEntitySec.SelectedItem.ToString());
-                    DatWindow = new DataWindow(this, SelectedEntity,-1)
-                    { StartPosition = FormStartPosition.CenterParent };
-                    DatWindow.ShowDialog();
-                    UpdateRegisterGrid();
-                    UpdateDictonaryGrid();
-                }
-            }
-        }
+        //private void AddDataRegToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    if (FileURL != "")
+        //    {
+        //        if (comboRegEntitySec.SelectedItem != null)
+        //        {   //--- Create a Register
+        //            Entity SelectedEntity = EntityList.Find(query => query.Name == comboRegEntitySec.SelectedItem.ToString());
+        //            DatWindow = new DataWindow(this, SelectedEntity,-1)
+        //            { StartPosition = FormStartPosition.CenterParent };
+        //            DatWindow.ShowDialog();
+        //            UpdateRegisterGrid();
+        //            UpdateDictonaryGrid();
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// event that calls remove or modify registers when the properly button was clicked
@@ -247,22 +247,6 @@ namespace FileManager
             {
                 string SerialOutput = SerialTool.Serialize(EntityList);
                 File.WriteAllText(FileURL, SerialOutput);
-
-                //FileStream files = new FileStream(FileURL, FileMode.Create);
-                //try
-                //{
-                //    BinaryFormatter formatter = new BinaryFormatter();
-                //    formatter.Serialize(files, EntityList);
-                //}
-                //catch (SerializationException ex)
-                //{
-                //    Console.WriteLine("Failed to serialize. Reason: " + ex.Message);
-                //    throw;
-                //}
-                //finally
-                //{
-                //    files.Close();
-                //}
             }
         }
 
@@ -270,22 +254,21 @@ namespace FileManager
         {
             string SerialInputdText = File.ReadAllText(FileURL);
             EntityList = SerialTool.Deserialize<List<Entity>>(SerialInputdText);
+            if (EntityList == null)
+                EntityList = new List<Entity>();
 
-            //FileStream files = new FileStream(FileURL, FileMode.Create);
-            //try
-            //{
-            //    BinaryFormatter formatter = new BinaryFormatter();
-            //    EntityList = (List<Entity>)formatter.Deserialize(files);
-            //}
-            //catch (SerializationException ex)
-            //{
-            //    Console.WriteLine("Failed to deserialize. Reason: " + ex.Message);
-            //    throw;
-            //}
-            //finally
-            //{
-            //    files.Close();
-            //}
+        }
+
+        private void ShowDataWinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DataWinTextBox.Text.Trim() != "" && FileURL != "")
+            {
+                int indexResult = EntityList.FindIndex(pred => pred.Name == DataWinTextBox.Text);
+                if(indexResult > 0)
+                {
+                    //TODO
+                }
+            }
         }
     }
 }

@@ -14,7 +14,10 @@ namespace FileManager
         public string IndexType; // 0 - NONE KEY,   1 - PRIMARY KEY,   2 - FOREING KEY
         public int LengthDataType;
         public string Description;
-        public string FKRelation; // "Entity-PrimKey"
+        //FKey fields
+        public bool isFK;
+        public string FKEntityRel; // "Entity-PrimKey"
+        public string FKPrimKeyRel; // "Entity-PrimKey"
         /// <summary>
         /// Attribute constructor.
         /// </summary>
@@ -29,7 +32,9 @@ namespace FileManager
             LengthDataType = inLength;
             IndexType = inIdxType;
             Description = inDesc;
-            FKRelation = "";
+            isFK = false;
+            FKEntityRel = "";
+            FKPrimKeyRel = "";
         }
 
         /// <summary>
@@ -46,7 +51,23 @@ namespace FileManager
             LengthDataType = 4;
             IndexType = "NONE KEY";
             Description = "";
-            FKRelation = "";
+            FKEntityRel = "";
+            FKPrimKeyRel = "";
+        }
+
+        /// <summary>
+        /// Sets the For. Key fields needed
+        /// </summary>
+        /// <param name="FKEnt"></param>
+        /// <param name="FKPrKey"></param>
+        public void SetFKey(string FKEnt, string FKPrKey)
+        {
+            if(IndexType == "FOREING KEY")
+            {
+                FKEntityRel = FKEnt;
+                FKPrimKeyRel = FKPrKey;
+                isFK = true;
+            }
         }
     }
 }

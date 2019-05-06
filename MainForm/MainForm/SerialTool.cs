@@ -15,7 +15,17 @@ namespace FileManager
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
             using (StringReader textReader = new StringReader(toDeserialize))
             {
-                return (T)xmlSerializer.Deserialize(textReader);
+                try
+                {
+                    var res = (T)xmlSerializer.Deserialize(textReader);
+                    return res;
+                }
+                catch (Exception e)
+                {
+
+                    
+                    return default(T);
+                }
             }
         }
 

@@ -80,18 +80,34 @@ namespace FileManager
         public void CreateAttribute(Attribute inputAtt, string EntityInputName)
         {
             Entity SelectedEntity = MainForm.EntityList.Find(ent => ent.Name == EntityInputName);
-            //Determines if exists Inputs errors 
-            bool finded = false;
-            bool containsPK = SelectedEntity.AttributeList.Any(item => item.IndexType == "PRIMARY KEY");
-            if (containsPK && IndexTBox.Text == "PRIMARY KEY")
+            bool issues = false;
+            if(IndexTBox.Text == "FOREING KEY")
             {
-                finded = true;
-                MessageBox.Show("the Entity already has a Primary Key", " Input Error");
+                if (PKEntityBox.Text.Trim() != "" && PKSearchBox.Text.Trim() != "")
+                {
+                    int Indx = MainForm.EntityList.FindIndex(ent => ent.Name == EntityInputName);
+                    if (Indx > 0)
+                    {
+                        int indexResult = MainForm.EntityList[Indx].AttributeList.
+                            FindIndex(pred => pred.IndexType == "PRIMARY KEY" && pred.Name == PKSearchBox.Text);
+                        if (indexResult > 0)
+                        {
+                            //Correct Data integratity check
+                            inputAtt.SetFKey(PKEntityBox.Text, PKSearchBox.Text);
+                        }
+                        else
+                            issues = true;
+                    }
+                    else
+                        issues = true;
+                }
+                else
+                    issues = true;
             }
-            if (!finded)
-            {   //finds no input errors
+            if(!issues)
                 SelectedEntity.AttributeList.Add(inputAtt);
-            }
+            else
+                MessageBox.Show("Wrong Data on Attribute's input", "Attribute Input Error");
         }
 
         /// <summary>
@@ -133,15 +149,32 @@ namespace FileManager
                 if (NameBox.Text.Trim() != "" && IndexTBox.Text != "" && TypeBox.Text != "" 
                     && SelectAtributeBox.Text != "" && SelectEntityBox.SelectedItem.ToString() != "")
                 {
-
+                    int DataLen = 0;
+                    switch (TypeBox.Text)
+                    {
+                        case "STRING":
+                            DataLen = int.Parse(LenghtBox.Text);
+                            break;
+                        case "INT":
+                            DataLen = 4;
+                            break;
+                        case "LONG":
+                            DataLen = 8;
+                            break;
+                        case "BOOL":
+                            DataLen = 1;
+                            break;
+                    }
                     Attribute inputAttribute;
                     inputAttribute = new Attribute(NameBox.Text, TypeBox.Text,
-                        IndexTBox.Text, int.Parse(LenghtBox.Text), DescriptionBox.Text);
+                        IndexTBox.Text, DataLen, DescriptionBox.Text);
+                    DeleteAttribute(SelectEntityBox.SelectedIndex, SelectAtributeBox.SelectedIndex);
+                    CreateAttribute(inputAttribute, SelectEntityBox.SelectedItem.ToString());
                 }
                 this.Close();
             }
         }
-
+           
         /// <summary>
         /// refresh the Modify and Delete ComboBox.
         /// </summary>
@@ -167,9 +200,15 @@ namespace FileManager
         private void IndexTBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (TypeBox.SelectedItem.ToString() == "FOREING KEY")
+            {
                 PKSearchBox.ReadOnly = false;
+                PKEntityBox.ReadOnly = false;  
+            }
             else
+            { 
                 PKSearchBox.ReadOnly = true;
+                PKEntityBox.ReadOnly = true;
+            }
         }
     }
 }

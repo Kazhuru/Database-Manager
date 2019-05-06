@@ -38,10 +38,11 @@
             this.MenuNewFile = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuSearchFile = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addDataRegToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.modifyEntityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modifyAttributeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShowDataWinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DataWinTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.labelSelectFile = new System.Windows.Forms.Label();
             this.DictionaryGrid = new System.Windows.Forms.GroupBox();
@@ -51,6 +52,7 @@
             this.AttDataType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AttDataLenght = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AttIndexType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descript = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EntityGridView = new System.Windows.Forms.DataGridView();
             this.EntName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RegistersGrid = new System.Windows.Forms.GroupBox();
@@ -91,7 +93,8 @@
             this.openFileToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.CreateToolStripMenuItem1,
-            this.addDataRegToolStripMenuItem});
+            this.ShowDataWinToolStripMenuItem,
+            this.DataWinTextBox});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1273, 30);
@@ -135,16 +138,6 @@
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // addDataRegToolStripMenuItem
-            // 
-            this.addDataRegToolStripMenuItem.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.addDataRegToolStripMenuItem.Image = global::FileManager.Properties.Resources.if_data_115746;
-            this.addDataRegToolStripMenuItem.Margin = new System.Windows.Forms.Padding(3);
-            this.addDataRegToolStripMenuItem.Name = "addDataRegToolStripMenuItem";
-            this.addDataRegToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
-            this.addDataRegToolStripMenuItem.Text = "Add Data";
-            this.addDataRegToolStripMenuItem.Click += new System.EventHandler(this.AddDataRegToolStripMenuItem_Click);
-            // 
             // CreateToolStripMenuItem1
             // 
             this.CreateToolStripMenuItem1.BackColor = System.Drawing.SystemColors.ButtonFace;
@@ -160,16 +153,33 @@
             // modifyEntityToolStripMenuItem
             // 
             this.modifyEntityToolStripMenuItem.Name = "modifyEntityToolStripMenuItem";
-            this.modifyEntityToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modifyEntityToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.modifyEntityToolStripMenuItem.Text = "Entity\'s Window";
             this.modifyEntityToolStripMenuItem.Click += new System.EventHandler(this.ModifyEntityToolStripMenuItem_Click);
             // 
             // modifyAttributeToolStripMenuItem
             // 
             this.modifyAttributeToolStripMenuItem.Name = "modifyAttributeToolStripMenuItem";
-            this.modifyAttributeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modifyAttributeToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.modifyAttributeToolStripMenuItem.Text = "Attribute\'s Window";
             this.modifyAttributeToolStripMenuItem.Click += new System.EventHandler(this.ModifyAttributeToolStripMenuItem_Click);
+            // 
+            // ShowDataWinToolStripMenuItem
+            // 
+            this.ShowDataWinToolStripMenuItem.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.ShowDataWinToolStripMenuItem.Image = global::FileManager.Properties.Resources.if_data_115746;
+            this.ShowDataWinToolStripMenuItem.Margin = new System.Windows.Forms.Padding(22, 3, 2, 3);
+            this.ShowDataWinToolStripMenuItem.Name = "ShowDataWinToolStripMenuItem";
+            this.ShowDataWinToolStripMenuItem.Size = new System.Drawing.Size(141, 20);
+            this.ShowDataWinToolStripMenuItem.Text = "Show Data Window:";
+            this.ShowDataWinToolStripMenuItem.Click += new System.EventHandler(this.ShowDataWinToolStripMenuItem_Click);
+            // 
+            // DataWinTextBox
+            // 
+            this.DataWinTextBox.AutoSize = false;
+            this.DataWinTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.DataWinTextBox.Name = "DataWinTextBox";
+            this.DataWinTextBox.Size = new System.Drawing.Size(150, 18);
             // 
             // label1
             // 
@@ -195,7 +205,7 @@
             this.DictionaryGrid.Controls.Add(this.EntityGridView);
             this.DictionaryGrid.Location = new System.Drawing.Point(0, 55);
             this.DictionaryGrid.Name = "DictionaryGrid";
-            this.DictionaryGrid.Size = new System.Drawing.Size(628, 464);
+            this.DictionaryGrid.Size = new System.Drawing.Size(932, 464);
             this.DictionaryGrid.TabIndex = 8;
             this.DictionaryGrid.TabStop = false;
             this.DictionaryGrid.Text = "Data Dictionary Grid";
@@ -213,7 +223,8 @@
             this.AttName,
             this.AttDataType,
             this.AttDataLenght,
-            this.AttIndexType});
+            this.AttIndexType,
+            this.Descript});
             this.AttribGridView.Location = new System.Drawing.Point(118, 19);
             this.AttribGridView.MultiSelect = false;
             this.AttribGridView.Name = "AttribGridView";
@@ -221,7 +232,7 @@
             this.AttribGridView.RowHeadersVisible = false;
             this.AttribGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.AttribGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.AttribGridView.Size = new System.Drawing.Size(499, 435);
+            this.AttribGridView.Size = new System.Drawing.Size(808, 435);
             this.AttribGridView.TabIndex = 9;
             // 
             // AttEntName
@@ -255,6 +266,15 @@
             this.AttIndexType.Name = "AttIndexType";
             this.AttIndexType.ReadOnly = true;
             // 
+            // Descript
+            // 
+            this.Descript.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Descript.HeaderText = "Descripcion";
+            this.Descript.MinimumWidth = 150;
+            this.Descript.Name = "Descript";
+            this.Descript.ReadOnly = true;
+            this.Descript.Width = 150;
+            // 
             // EntityGridView
             // 
             this.EntityGridView.AllowUserToAddRows = false;
@@ -285,9 +305,9 @@
             // RegistersGrid
             // 
             this.RegistersGrid.Controls.Add(this.RegistersGridView);
-            this.RegistersGrid.Location = new System.Drawing.Point(634, 55);
+            this.RegistersGrid.Location = new System.Drawing.Point(1148, 55);
             this.RegistersGrid.Name = "RegistersGrid";
-            this.RegistersGrid.Size = new System.Drawing.Size(631, 464);
+            this.RegistersGrid.Size = new System.Drawing.Size(117, 464);
             this.RegistersGrid.TabIndex = 9;
             this.RegistersGrid.TabStop = false;
             this.RegistersGrid.Text = "Data Registers Grid";
@@ -316,7 +336,7 @@
             // comboRegEntitySec
             // 
             this.comboRegEntitySec.FormattingEnabled = true;
-            this.comboRegEntitySec.Location = new System.Drawing.Point(933, 36);
+            this.comboRegEntitySec.Location = new System.Drawing.Point(1132, 35);
             this.comboRegEntitySec.Name = "comboRegEntitySec";
             this.comboRegEntitySec.Size = new System.Drawing.Size(136, 21);
             this.comboRegEntitySec.TabIndex = 10;
@@ -325,7 +345,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(861, 39);
+            this.label2.Location = new System.Drawing.Point(1060, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 9;
@@ -383,13 +403,15 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView RegistersGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn EntName;
+        private System.Windows.Forms.ToolStripMenuItem ShowDataWinToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox DataWinTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn AttEntName;
         private System.Windows.Forms.DataGridViewTextBoxColumn AttName;
         private System.Windows.Forms.DataGridViewTextBoxColumn AttDataType;
         private System.Windows.Forms.DataGridViewTextBoxColumn AttDataLenght;
         private System.Windows.Forms.DataGridViewTextBoxColumn AttIndexType;
-        private System.Windows.Forms.ToolStripMenuItem addDataRegToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descript;
     }
 }
 

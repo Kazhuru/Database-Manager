@@ -49,6 +49,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.PKSearchBox = new System.Windows.Forms.TextBox();
+            this.PKEntityBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -191,11 +193,11 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(369, 87);
+            this.label13.Location = new System.Drawing.Point(369, 122);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(64, 13);
+            this.label13.Size = new System.Drawing.Size(82, 13);
             this.label13.TabIndex = 16;
-            this.label13.Text = "P.K. Search";
+            this.label13.Text = "PrimKey Search";
             // 
             // DescriptionBox
             // 
@@ -230,10 +232,26 @@
             // 
             // PKSearchBox
             // 
-            this.PKSearchBox.Location = new System.Drawing.Point(347, 103);
+            this.PKSearchBox.Location = new System.Drawing.Point(347, 137);
             this.PKSearchBox.Name = "PKSearchBox";
             this.PKSearchBox.Size = new System.Drawing.Size(116, 20);
             this.PKSearchBox.TabIndex = 19;
+            // 
+            // PKEntityBox
+            // 
+            this.PKEntityBox.Location = new System.Drawing.Point(347, 96);
+            this.PKEntityBox.Name = "PKEntityBox";
+            this.PKEntityBox.Size = new System.Drawing.Size(116, 20);
+            this.PKEntityBox.TabIndex = 20;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(369, 81);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 13);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "PrimKey Entity";
             // 
             // AttributeWindow
             // 
@@ -241,6 +259,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(478, 259);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.PKEntityBox);
             this.Controls.Add(this.PKSearchBox);
             this.Controls.Add(this.Descriptionlbl);
             this.Controls.Add(this.label13);
@@ -287,5 +307,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox PKSearchBox;
+        private System.Windows.Forms.TextBox PKEntityBox;
+        private System.Windows.Forms.Label label1;
     }
 }

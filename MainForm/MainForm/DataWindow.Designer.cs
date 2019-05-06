@@ -36,7 +36,7 @@
             // CreateDR
             // 
             this.CreateDR.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.CreateDR.Location = new System.Drawing.Point(386, 122);
+            this.CreateDR.Location = new System.Drawing.Point(386, 67);
             this.CreateDR.Name = "CreateDR";
             this.CreateDR.Size = new System.Drawing.Size(109, 23);
             this.CreateDR.TabIndex = 9;
