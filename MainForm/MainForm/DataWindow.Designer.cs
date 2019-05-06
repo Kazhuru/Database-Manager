@@ -36,20 +36,20 @@
             // CreateDR
             // 
             this.CreateDR.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.CreateDR.Location = new System.Drawing.Point(386, 67);
+            this.CreateDR.Location = new System.Drawing.Point(209, 3);
             this.CreateDR.Name = "CreateDR";
             this.CreateDR.Size = new System.Drawing.Size(109, 23);
             this.CreateDR.TabIndex = 9;
-            this.CreateDR.Text = "Create / Modify";
+            this.CreateDR.Text = "...";
             this.CreateDR.UseVisualStyleBackColor = false;
             this.CreateDR.Click += new System.EventHandler(this.CreateDR_Click);
             // 
             // createPanel
             // 
             this.createPanel.AutoScroll = true;
-            this.createPanel.Location = new System.Drawing.Point(12, 5);
+            this.createPanel.Location = new System.Drawing.Point(12, 29);
             this.createPanel.Name = "createPanel";
-            this.createPanel.Size = new System.Drawing.Size(368, 149);
+            this.createPanel.Size = new System.Drawing.Size(503, 187);
             this.createPanel.TabIndex = 1;
             // 
             // DataWindow
@@ -57,7 +57,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(500, 157);
+            this.ClientSize = new System.Drawing.Size(527, 228);
             this.Controls.Add(this.CreateDR);
             this.Controls.Add(this.createPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

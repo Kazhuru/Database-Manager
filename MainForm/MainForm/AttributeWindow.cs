@@ -85,12 +85,12 @@ namespace FileManager
             {
                 if (PKEntityBox.Text.Trim() != "" && PKSearchBox.Text.Trim() != "")
                 {
-                    int Indx = MainForm.EntityList.FindIndex(ent => ent.Name == EntityInputName);
-                    if (Indx > 0)
+                    int Indx = MainForm.EntityList.FindIndex(ent => ent.Name == PKEntityBox.Text);
+                    if (Indx >= 0)
                     {
                         int indexResult = MainForm.EntityList[Indx].AttributeList.
                             FindIndex(pred => pred.IndexType == "PRIMARY KEY" && pred.Name == PKSearchBox.Text);
-                        if (indexResult > 0)
+                        if (indexResult >= 0)
                         {
                             //Correct Data integratity check
                             inputAtt.SetFKey(PKEntityBox.Text, PKSearchBox.Text);
@@ -105,7 +105,10 @@ namespace FileManager
                     issues = true;
             }
             if(!issues)
+            {
                 SelectedEntity.AttributeList.Add(inputAtt);
+                this.Close();
+            }    
             else
                 MessageBox.Show("Wrong Data on Attribute's input", "Attribute Input Error");
         }
@@ -199,7 +202,7 @@ namespace FileManager
 
         private void IndexTBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (TypeBox.SelectedItem.ToString() == "FOREING KEY")
+            if (IndexTBox.SelectedItem.ToString() == "FOREING KEY")
             {
                 PKSearchBox.ReadOnly = false;
                 PKEntityBox.ReadOnly = false;  

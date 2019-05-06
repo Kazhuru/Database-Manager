@@ -87,6 +87,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="RegistersViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistersViewer.Designer.cs">
+      <DependentUpon>RegistersViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewFileForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistersViewer.resx">
+      <DependentUpon>RegistersViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewFileForm.resx">
       <DependentUpon>NewFileForm.cs</DependentUpon>
@@ -157,6 +166,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\iconfinder_save_2561379.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new_3324.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

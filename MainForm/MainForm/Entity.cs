@@ -41,8 +41,7 @@ namespace FileManager
             //check if already exist the key
             if(CheckIsRepeatedKey(DataBuffer,PKIndx,-1) == false)
             {
-                //Sorted insert
-                
+                //Sorted insert TODO ???
                 Registers.Add(new DataRegister(DataBuffer,DataBuffer[PKIndx]));
             }
         }
@@ -55,6 +54,8 @@ namespace FileManager
             if (CheckIsRepeatedKey(DataBuffer, PKIndx, RegisterIndex) == false)
             {
                 RemoveRegister(RegisterIndex);
+
+                //Sorted insert TODO ???
                 Registers.Add(new DataRegister(DataBuffer, DataBuffer[PKIndx]));
             }
         }

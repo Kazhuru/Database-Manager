@@ -55,17 +55,11 @@
             this.Descript = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EntityGridView = new System.Windows.Forms.DataGridView();
             this.EntName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RegistersGrid = new System.Windows.Forms.GroupBox();
-            this.RegistersGridView = new System.Windows.Forms.DataGridView();
-            this.comboRegEntitySec = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.contextMenuStrip2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.DictionaryGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AttribGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EntityGridView)).BeginInit();
-            this.RegistersGrid.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RegistersGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -97,7 +91,7 @@
             this.DataWinTextBox});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1273, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(940, 30);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -302,65 +296,13 @@
             this.EntName.ReadOnly = true;
             this.EntName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // RegistersGrid
-            // 
-            this.RegistersGrid.Controls.Add(this.RegistersGridView);
-            this.RegistersGrid.Location = new System.Drawing.Point(1148, 55);
-            this.RegistersGrid.Name = "RegistersGrid";
-            this.RegistersGrid.Size = new System.Drawing.Size(117, 464);
-            this.RegistersGrid.TabIndex = 9;
-            this.RegistersGrid.TabStop = false;
-            this.RegistersGrid.Text = "Data Registers Grid";
-            // 
-            // RegistersGridView
-            // 
-            this.RegistersGridView.AllowUserToAddRows = false;
-            this.RegistersGridView.AllowUserToDeleteRows = false;
-            this.RegistersGridView.AllowUserToResizeColumns = false;
-            this.RegistersGridView.AllowUserToResizeRows = false;
-            this.RegistersGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.RegistersGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.RegistersGridView.BackgroundColor = System.Drawing.Color.Thistle;
-            this.RegistersGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.RegistersGridView.Location = new System.Drawing.Point(6, 19);
-            this.RegistersGridView.MultiSelect = false;
-            this.RegistersGridView.Name = "RegistersGridView";
-            this.RegistersGridView.ReadOnly = true;
-            this.RegistersGridView.RowHeadersVisible = false;
-            this.RegistersGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.RegistersGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.RegistersGridView.Size = new System.Drawing.Size(615, 436);
-            this.RegistersGridView.TabIndex = 11;
-            this.RegistersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RegistersGridView_CellContentClick);
-            // 
-            // comboRegEntitySec
-            // 
-            this.comboRegEntitySec.FormattingEnabled = true;
-            this.comboRegEntitySec.Location = new System.Drawing.Point(1132, 35);
-            this.comboRegEntitySec.Name = "comboRegEntitySec";
-            this.comboRegEntitySec.Size = new System.Drawing.Size(136, 21);
-            this.comboRegEntitySec.TabIndex = 10;
-            this.comboRegEntitySec.SelectionChangeCommitted += new System.EventHandler(this.ComboRegEntitySec_SelectionChangeCommitted);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1060, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Entity Select";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(1273, 531);
-            this.Controls.Add(this.comboRegEntitySec);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(940, 531);
             this.Controls.Add(this.DictionaryGrid);
-            this.Controls.Add(this.RegistersGrid);
             this.Controls.Add(this.labelSelectFile);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
@@ -375,8 +317,6 @@
             this.DictionaryGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AttribGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EntityGridView)).EndInit();
-            this.RegistersGrid.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.RegistersGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -398,10 +338,6 @@
         private System.Windows.Forms.DataGridView EntityGridView;
         private System.Windows.Forms.ToolStripMenuItem MenuNewFile;
         private System.Windows.Forms.DataGridView AttribGridView;
-        private System.Windows.Forms.GroupBox RegistersGrid;
-        private System.Windows.Forms.ComboBox comboRegEntitySec;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView RegistersGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn EntName;
         private System.Windows.Forms.ToolStripMenuItem ShowDataWinToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;

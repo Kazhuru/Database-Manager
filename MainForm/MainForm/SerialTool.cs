@@ -20,10 +20,8 @@ namespace FileManager
                     var res = (T)xmlSerializer.Deserialize(textReader);
                     return res;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-
-                    
                     return default(T);
                 }
             }
