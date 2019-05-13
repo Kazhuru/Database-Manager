@@ -27,3 +27,4 @@ C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\o
 C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\obj\Debug\FileManager.exe
 C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\obj\Debug\FileManager.pdb
 C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\obj\Debug\FileManager.RegistersViewer.resources
+C:\Users\Carlos SR\Documents\SEMESTRE X\BDA\Database-Manager\MainForm\MainForm\obj\Debug\FileManager.sqlCommand.resources

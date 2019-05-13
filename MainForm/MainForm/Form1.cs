@@ -21,6 +21,7 @@ namespace FileManager
         private EntityWindow EntWindow;
         private AttributeWindow AttWindow;
         private RegistersViewer RegViewer;
+        private sqlCommand commsConsole;
 
         public string FileURL { get; set; }
         public List<Entity> EntityList { get; set; }
@@ -131,111 +132,6 @@ namespace FileManager
             }
         }
 
-        /// <summary>
-        /// method that calls Registers Window to instert the new register Registers and create it
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void AddDataRegToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    if (FileURL != "")
-        //    {
-        //        if (comboRegEntitySec.SelectedItem != null)
-        //        {   //--- Create a Register
-        //            Entity SelectedEntity = EntityList.Find(query => query.Name == comboRegEntitySec.SelectedItem.ToString());
-        //            DatWindow = new DataWindow(this, SelectedEntity,-1)
-        //            { StartPosition = FormStartPosition.CenterParent };
-        //            DatWindow.ShowDialog();
-        //            UpdateDictonaryGrid();
-        //        }
-        //    }
-        //}
-
-        ///// <summary>
-        ///// event that calls remove or modify registers when the properly button was clicked
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void RegistersGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    if (FileURL != "")
-        //    {
-        //        if (comboRegEntitySec.SelectedItem != null)
-        //        {
-        //            Entity SelectedEnt = EntityList[comboRegEntitySec.SelectedIndex];
-        //            int RowIdx;
-        //            if (e.ColumnIndex == SelectedEnt.AttributeList.Count + 2)
-        //            { //--- Remove a Register
-        //                RowIdx = e.RowIndex;
-        //                SelectedEnt.RemoveRegister(RowIdx);
-        //            }
-        //            if (e.ColumnIndex == SelectedEnt.AttributeList.Count + 3)
-        //            {   //--- Modify a Register
-        //                RowIdx = e.RowIndex;
-        //                DatWindow = new DataWindow(this, SelectedEnt, RowIdx) { StartPosition = FormStartPosition.CenterParent };
-        //                DatWindow.ShowDialog();
-        //            }
-        //            UpdateDictonaryGrid();
-        //        }
-        //    }
-        //}
-
-        /// <summary>
-        /// method that selects a Entity to manipulate his Registers
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void ComboRegEntitySec_SelectionChangeCommitted(object sender, EventArgs e)
-        //{
-        //    Entity SelectedEntity = EntityList.Find(query => query.Name == comboRegEntitySec.SelectedItem.ToString());
-        //    RegistersGridView.Columns.Clear();
-        //    RegistersGridView.AutoResizeColumns();
-        //    foreach (Attribute att in SelectedEntity.AttributeList)
-        //    {
-        //        RegistersGridView.Columns.Add(att.Name, att.Name);
-        //    }
-        //    DataGridViewButtonColumn Remove = new DataGridViewButtonColumn
-        //    {
-        //        Name = "Remove",
-        //        HeaderText = "Remove"
-        //    };
-        //    DataGridViewButtonColumn Modify = new DataGridViewButtonColumn
-        //    {
-        //        Name = "Modify",
-        //        HeaderText = "Modify"
-        //    };
-        //    RegistersGridView.Columns.AddRange(new DataGridViewColumn[] { Remove, Modify });
-        //    UpdateDictonaryGrid();
-        //}
-
-        /// <summary>
-        /// Update the Register Grid View
-        /// </summary>
-        //private void UpdateRegisterGrid()
-        //{
-        //    if (comboRegEntitySec.SelectedItem != null)
-        //    {
-        //        RegistersGridView.Rows.Clear();
-        //        Entity SelectedEntity = EntityList[comboRegEntitySec.SelectedIndex];
-        //        foreach (var DataItem in SelectedEntity.Registers)
-        //        {
-        //            string[] rowR;
-        //            rowR = new string[DataItem.RegisterData.Count()];
-        //            for (int i = 0; i < DataItem.RegisterData.Count(); i++)
-        //                rowR[i] = DataItem.RegisterData[i];
-        //            RegistersGridView.Rows.Add(rowR);
-        //        }
-        //    }
-        //}
-
-        //private void UpdateComboRegistersPick()
-        //{
-        //    comboRegEntitySec.Items.Clear();
-        //    foreach (Entity ent in EntityList)
-        //        comboRegEntitySec.Items.Add(ent.Name);
-        //}
-
-
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if(FileURL != "")
@@ -265,6 +161,15 @@ namespace FileManager
                     RegViewer.ShowDialog();
                 }
             }
+        }
+
+        private void slqCommandMenuItem_Click(object sender, EventArgs e)
+        {
+            //if(FileURL != "")
+            //{
+                commsConsole = new sqlCommand() { StartPosition = FormStartPosition.CenterParent };
+                commsConsole.ShowDialog();
+            //}
         }
     }
 }
