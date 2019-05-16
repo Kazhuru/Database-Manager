@@ -16,20 +16,24 @@ namespace FileManager
         private DataWindow DatWindow;
         public Entity currentEntity;
         private int currentRowIndex;
+        private bool isOpenBySQL;
 
         /// <summary>
         /// Generic constructor 
         /// </summary>
         /// <param name="callingForm"></param>
         /// <param name="currentEnt"></param>
-        public RegistersViewer(Form callingForm, Entity currentEnt)
+        public RegistersViewer(Form callingForm, Entity currentEnt,bool isSQL)
         {
             MainForm = callingForm as Form1; 
             InitializeComponent();
-
             currentEntity = currentEnt;
             currentRowIndex = -1;
             InitGridView();
+            isOpenBySQL = isSQL;
+            addDataToolStripMenuItem.Enabled = !isSQL;
+            modifyDataToolStripMenuItem.Enabled = !isSQL;
+            removeDataToolStripMenuItem.Enabled = !isSQL;
         }
 
         /// <summary>
@@ -41,12 +45,21 @@ namespace FileManager
         {
             RegistersGridView.Columns.Clear();
             RegistersGridView.AutoResizeColumns();
-            foreach (Attribute attIterator in currentEntity.AttributeList)
+
+            if(isOpenBySQL == false)
             {
-                RegistersGridView.Columns.Add(attIterator.Name, attIterator.Name);
+                foreach (Attribute attIterator in currentEntity.AttributeList)
+                {
+                    RegistersGridView.Columns.Add(attIterator.Name, attIterator.Name);
+                }
+                UpdateRegisterGrid();
             }
-            UpdateRegisterGrid();
+            else
+            {
+                //TODO checar SQL, generar cambios
+            }
         }
+
 
         /// <summary>
         /// Update the Register Grid View

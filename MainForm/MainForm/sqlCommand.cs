@@ -15,13 +15,21 @@ namespace FileManager
         private string txtInput = "";
         private List<string> ReservedWords;
         private List<string> Operators;
+        private List<string> SELECT;
+        private List<string> FROM;
+        private List<string> WHERE;
+        private Form1 MainForm = null;
 
-        public sqlCommand()
+        public sqlCommand(Form callingForm)
         {
+            MainForm = callingForm as Form1;
             InitializeComponent();
             txtInput = "";
             ReservedWords = new List<string>() { "SELECT", "FROM", "WHERE" };
             Operators = new List<string>() { "==", "<>", ">", "<", ">=", "<=", "*"};
+            SELECT = new List<string>();
+            FROM = new List<string>();
+            WHERE = new List<string>();
 
         }
 
@@ -59,7 +67,7 @@ namespace FileManager
         private void GetCommand(List<string> parsedTxt)
         {
             bool correctInput = true;
-            List<string> sqlSpecs = new List<string>();
+            //List<string> sqlSpecs = new List<string>();
             string CurrentReserved = "";
 
 
@@ -79,7 +87,7 @@ namespace FileManager
                             if (CurrentReserved == "SELECT")
                             {
                                 CurrentReserved = "FROM";
-                                sqlSpecs.Add("@");
+                                //sqlSpecs.Add("@");
                             }
                             else
                                 correctInput = false;
@@ -88,7 +96,7 @@ namespace FileManager
                             if (CurrentReserved == "FROM")
                             {
                                 CurrentReserved = "WHERE";
-                                sqlSpecs.Add("@");
+                                //sqlSpecs.Add("@");
                             }
                             else
                                 correctInput = false;
@@ -104,13 +112,23 @@ namespace FileManager
                             else
                                 correctInput = false;
                             break;
+                        case "*":
+                            if (CurrentReserved == "SELECT")
+                            {
+                                if(SELECT.Count > 0)
+                                    correctInput = false;
+                                else
+                                    SELECT.Add(parsedTxt[i]);
+                            }
+                            else
+                                correctInput = false;
+                            break;
                         case "==":
                         case ">":
                         case "<":
                         case ">=":
                         case "<=":
                         case "<>":
-                        case "*":
                             if (CurrentReserved == "WHERE")
                             {
                                 if (parsedTxt[i] == parsedTxt.Last())
@@ -118,7 +136,7 @@ namespace FileManager
                                 else if (Operators.Contains(parsedTxt[i - 1]) || ReservedWords.Contains(parsedTxt[i + 1]))
                                     correctInput = false;
                                 else
-                                    sqlSpecs.Add(parsedTxt[i]);
+                                    WHERE.Add(parsedTxt[i]);
                             }
                             else
                                 correctInput = false;
@@ -127,15 +145,21 @@ namespace FileManager
                             //ID's de Entidades, Atributos  
                             if (CurrentReserved == "SELECT")
                             {
-                                    sqlSpecs.Add(parsedTxt[i]);
+                                if(SELECT.Contains("*"))
+                                    correctInput = false;
+                                else
+                                    SELECT.Add(parsedTxt[i]);
                             }
                             else if(CurrentReserved == "FROM")
                             {
-                                sqlSpecs.Add(parsedTxt[i]);
+                                if(FROM.Count > 0)
+                                    correctInput = false;
+                                else
+                                    FROM.Add(parsedTxt[i]);
                             }
                             else if (CurrentReserved == "WHERE")
                             {
-                                sqlSpecs.Add(parsedTxt[i]);
+                                WHERE.Add(parsedTxt[i]);
                             }
                             break;
                     } 
@@ -143,7 +167,9 @@ namespace FileManager
                     if(correctInput == false)
                     {
                         i = parsedTxt.Count();
-                        sqlSpecs.Clear();
+                        SELECT.Clear();
+                        FROM.Clear();
+                        WHERE.Clear();
                     }
                         
 
@@ -154,17 +180,65 @@ namespace FileManager
                 correctInput = false;
             }
 
-
             //========== UPDATE or ERROR ===========
             if(correctInput)
             {
-                //TODO
+                bool okData = CheckCorrectData();
+                if (okData)
+                {
+                    MainForm.SELECT = SELECT;
+                    MainForm.FROM = FROM;
+                    MainForm.WHERE = WHERE;
+                    this.Close();
+                }
             }
             else
             {
-                //TODO
+                MessageBox.Show("Incorrect command input, Try again", "SQL Syntax Error");
             }
 
+        }
+
+        private bool CheckCorrectData()
+        {
+            if (SELECT.Count > 0 && FROM.Count > 0)
+            {
+                int idx = MainForm.EntityList.FindIndex(pred => pred.Name == FROM.First());
+                if (idx >= 0)
+                {
+                    bool okSelectSearch = true;
+                    foreach (var item in SELECT)
+                        if (MainForm.EntityList[idx].AttributeList.Any(pred => pred.Name == item) == false)
+                            okSelectSearch = false;
+                    if (okSelectSearch)
+                    {
+                        bool FirstItem = MainForm.EntityList[idx].AttributeList.Any(pred => pred.Name == WHERE.First());
+                        bool LastItem = MainForm.EntityList[idx].AttributeList.Any(pred => pred.Name == WHERE.Last());
+                        if (!FirstItem && !LastItem)
+                        {
+                            //No se encontro los atributos seleccionados en Where 
+                            MessageBox.Show("WHERE: Attribute not found, Try again", "SQL Syntax Error");
+                        }
+                        else
+                        {   //Todo Correcto! 
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        //No se encontro los atributos seleccionados en Select
+                        MessageBox.Show("SELECT: Attribute not found, Try again", "SQL Syntax Error");
+                        return false;
+                    }
+                }
+                else
+                {
+                    //No se encontro la entidad seleccionada
+                    MessageBox.Show("FROM: Entity not found, Try again", "SQL Syntax Error");
+                    return false;
+                }
+            }
+            return false;
         }
     }
 }

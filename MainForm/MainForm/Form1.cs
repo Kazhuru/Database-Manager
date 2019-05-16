@@ -28,6 +28,10 @@ namespace FileManager
         private FileStream fs;
         public string NewWindowInput { get { return labelSelectFile.Text; } set { labelSelectFile.Text = value; } }
 
+        public List<string> SELECT = new List<string>();
+        public List<string> FROM = new List<string>();
+        public List<string> WHERE = new List<string>();
+
         /// <summary>
         /// Form1 constructor.
         /// </summary>
@@ -35,6 +39,9 @@ namespace FileManager
         {
             FileURL = "";
             EntityList = new List<Entity>();
+            SELECT = new List<string>();
+            FROM = new List<string>();
+            WHERE = new List<string>();
             InitializeComponent();
         }
 
@@ -157,7 +164,7 @@ namespace FileManager
                 int indexResult = EntityList.FindIndex(pred => pred.Name == DataWinTextBox.Text);
                 if(indexResult >= 0)
                 {
-                    RegViewer = new RegistersViewer(this,EntityList[indexResult]) { StartPosition = FormStartPosition.CenterParent };
+                    RegViewer = new RegistersViewer(this,EntityList[indexResult],false) { StartPosition = FormStartPosition.CenterParent };
                     RegViewer.ShowDialog();
                 }
             }
@@ -165,11 +172,21 @@ namespace FileManager
 
         private void slqCommandMenuItem_Click(object sender, EventArgs e)
         {
-            //if(FileURL != "")
-            //{
-                commsConsole = new sqlCommand() { StartPosition = FormStartPosition.CenterParent };
+            if (FileURL != "")
+            {
+                commsConsole = new sqlCommand(this) { StartPosition = FormStartPosition.CenterParent };
+                SELECT.Clear();
+                FROM.Clear();
+                WHERE.Clear();
                 commsConsole.ShowDialog();
-            //}
+
+                if (SELECT.Count > 0 && FROM.Count > 0)
+                {
+                    int idx = EntityList.FindIndex(pred => pred.Name == FROM.First());
+                    RegViewer = new RegistersViewer(this, EntityList[idx],true) { StartPosition = FormStartPosition.CenterParent };
+                    RegViewer.ShowDialog();
+                }
+            }
         }
     }
 }
