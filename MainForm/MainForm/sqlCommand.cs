@@ -212,17 +212,18 @@ namespace FileManager
                             okSelectSearch = false;
                     if (okSelectSearch)
                     {
-                        bool FirstItem = MainForm.EntityList[idx].AttributeList.Any(pred => pred.Name == WHERE.First());
-                        bool LastItem = MainForm.EntityList[idx].AttributeList.Any(pred => pred.Name == WHERE.Last());
-                        if (!FirstItem && !LastItem)
+                        if(WHERE.Count > 0 )
                         {
-                            //No se encontro los atributos seleccionados en Where 
-                            MessageBox.Show("WHERE: Attribute not found, Try again", "SQL Syntax Error");
+                            bool FirstItem = MainForm.EntityList[idx].AttributeList.Any(pred => pred.Name == WHERE.First());
+                            bool LastItem = MainForm.EntityList[idx].AttributeList.Any(pred => pred.Name == WHERE.Last());
+
+                            if (!FirstItem && !LastItem) //No se encontro los atributos seleccionados en Where
+                                MessageBox.Show("WHERE: Attribute not found, Try again", "SQL Syntax Error");
+                            else   //Todo Correcto! 
+                                return true;
                         }
-                        else
-                        {   //Todo Correcto! 
+                        else //Todo Correcto! 
                             return true;
-                        }
                     }
                     else
                     {
