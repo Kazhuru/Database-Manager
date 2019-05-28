@@ -29,8 +29,8 @@ namespace FileManager
             InitializeComponent();
             currentEntity = currentEnt;
             currentRowIndex = -1;
-            InitGridView();
             isOpenBySQL = isSQL;
+            InitGridView();
             addDataToolStripMenuItem.Enabled = !isSQL;
             modifyDataToolStripMenuItem.Enabled = !isSQL;
             removeDataToolStripMenuItem.Enabled = !isSQL;
@@ -62,6 +62,7 @@ namespace FileManager
                 {
                     if(MainForm.SELECT.First() == "*")
                     {
+                        idxSelect.Add(RegistersGridView.Columns.Count);
                         RegistersGridView.Columns.Add(attIterator.Name, attIterator.Name);
                     }
                     else
@@ -99,8 +100,6 @@ namespace FileManager
             RegistersGridView.Rows.Clear();
             foreach (var DataItem in currentEntity.Registers)
             {
-                
-                
                 if (MainForm.WHERE.Count > 0)
                 {   //WHERE contains elements
                     bool WhereCondition = true;
@@ -126,7 +125,7 @@ namespace FileManager
                         string[] rowR;
                         rowR = new string[idxSelect.Count()];
                         for (int i = 0; i < idxSelect.Count; i++)
-                            rowR[i] = idxSelect[i].ToString();
+                            rowR[i] = DataItem.RegisterData[i].ToString();
                         RegistersGridView.Rows.Add(rowR);
                     }
 
@@ -137,7 +136,7 @@ namespace FileManager
                     string[] rowR;
                     rowR = new string[idxSelect.Count()];
                     for (int i = 0; i < idxSelect.Count; i++)
-                        rowR[i] = idxSelect[i].ToString();
+                        rowR[i] = DataItem.RegisterData[i].ToString();
                     RegistersGridView.Rows.Add(rowR);
                 }
             }
@@ -148,17 +147,17 @@ namespace FileManager
             switch(operation)
             {
                 case "==":
-                    return (var1 == var2);
+                    return var1 == var2;
                 case ">=":
-                    return (var1 >= var2);
+                    return int.Parse(var1) >= int.Parse(var2);
                 case ">":
-                    return (var1 > var2);
+                    return int.Parse(var1) > int.Parse(var2);
                 case "<=":
-                    return (var1 <= var2);
+                    return int.Parse(var1) <= int.Parse(var2);
                 case "<":
-                    return (var1 < var2);
+                    return int.Parse(var1) < int.Parse(var2);
                 case "<>":
-                    return (var1 != var2);      
+                    return var1 != var2;      
             }
             return false;
         }

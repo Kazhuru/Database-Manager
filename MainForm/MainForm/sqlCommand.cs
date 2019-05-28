@@ -46,6 +46,7 @@ namespace FileManager
         private List<string> ParseInput()
         {
             List<string> splitInput = txtInput.Split(' ').ToList();
+            splitInput.RemoveAll(pred => pred == "");
             for (int i = 0; i < splitInput.Count; i++)
             {
                 splitInput[i] = splitInput[i].Trim();
@@ -207,9 +208,10 @@ namespace FileManager
                 if (idx >= 0)
                 {
                     bool okSelectSearch = true;
-                    foreach (var item in SELECT)
-                        if (MainForm.EntityList[idx].AttributeList.Any(pred => pred.Name == item) == false)
-                            okSelectSearch = false;
+                    if(!SELECT.Contains("*"))
+                        foreach (var item in SELECT)
+                            if (MainForm.EntityList[idx].AttributeList.Any(pred => pred.Name == item) == false)
+                                okSelectSearch = false;
                     if (okSelectSearch)
                     {
                         if(WHERE.Count > 0 )
